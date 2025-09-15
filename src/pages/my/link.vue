@@ -3,9 +3,7 @@
   <view
       style="display: flex;flex-direction: column;justify-content: center;align-items: center;height: 80vh;gap:70rpx">
     <view style="display: flex; gap: 50rpx;justify-content: center;align-items: center">
-      <image src="/static/app-logo.png" style="width:120rpx;height: 120rpx"></image>
-      <image src="/static/dots.svg" style="width:50rpx;height: 50rpx"></image>
-      <image src="/static/wechat.svg" style="width:120rpx;height: 120rpx"></image>
+      <image src="/static/app-logo-3.png" style="width:120rpx;height: 120rpx"></image>
     </view>
     <view style="display: flex;justify-content: center;align-items: center">
       <uv-checkbox-group v-model="checkboxList">
@@ -17,10 +15,10 @@
       </view>
     </view>
     <uv-button v-if="checkboxList.length === 0" size="large" custom-style="border-radius:20rpx" type="success"
-               @click="openTips">点击关联微信
+               @click="openTips">手机号快捷登录
     </uv-button>
     <uv-button v-else size="large" custom-style="border-radius:20rpx" open-type="getPhoneNumber"
-               @getphonenumber="onGetPhoneNumber" type="success">点击关联微信
+               @getphonenumber="onGetPhoneNumber" type="success">手机号快捷登录
     </uv-button>
   </view>
 </template>
@@ -66,23 +64,18 @@ async function onGetPhoneNumber(e) {
     if (!isSuccess(resp.data) || !cookie['satoken']) {
       toast.value.show({
         type: "error",
-        message: '关联微信失败'
+        message: '登录失败'
       })
       return;
     }
     uni.setStorageSync('satoken', cookie['satoken']);
-
-    toast.value.show({
-      type: "success",
-      message: "关联微信成功",
-    })
     await uni.switchTab({
       url: `/pages/my/my`
     })
   } catch (error) {
     toast.value.show({
       type: "error",
-      message: '关联微信失败',
+      message: '登录失败',
     })
   }
 }

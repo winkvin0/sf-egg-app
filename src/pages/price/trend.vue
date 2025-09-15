@@ -28,7 +28,7 @@
 
 <script setup>
 import {computed, ref, watchEffect} from "vue";
-import {onShareAppMessage, onShow} from "@dcloudio/uni-app";
+import {onLoad, onShareAppMessage, onShow} from "@dcloudio/uni-app";
 import dayjs from "dayjs";
 import {baseUrl} from "../../utils/urlUtils";
 
@@ -82,8 +82,11 @@ const regionName = computed(() => {
   return area ? area.name : '未找到';
 })
 
-onShow((option) => {
-  regionCode.value = option.regionCode;
+onLoad((options) => {
+  regionCode.value = options.regionCode;
+})
+
+onShow(() => {
   syncDailyTrend()
   syncRegionTrend()
 })

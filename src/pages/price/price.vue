@@ -1,5 +1,5 @@
 <template>
-  <view style="display: flex;flex-direction: column;gap: 20rpx">
+  <view style="display: flex;flex-direction: column;gap: 20rpx;height: 100vh;">
     <!--    <view style="display: flex;">-->
     <!--&lt;!&ndash;      <image src="/static/query.svg" style="width: 50rpx;height: auto; margin-left: 10rpx"></image>&ndash;&gt;-->
     <!--    </view>-->
@@ -131,6 +131,16 @@ function toTrend() {
 function confirm(e) {
   date.value = dayjs(e.fulldate)
 }
+
+function getDiffDisplay(i, priceField, diffField) {
+  const price = prices[i][priceField];
+  const diff = prices[i][diffField];
+  if (price === 0) return '--';
+  if (price === diff) return '--';
+  return diff > 0 ? '+' + diff : diff;
+}
+
+
 </script>
 
 <style scoped lang="scss">
@@ -157,10 +167,11 @@ function confirm(e) {
 
 .table-row {
   display: flex;
+  background: black;
+  color: white;
 }
 
 .table-cell {
-  background-color: rgba(238, 187, 189, 0.6);
   padding: 8rpx;
   flex: 1;
   border: 1px solid black;

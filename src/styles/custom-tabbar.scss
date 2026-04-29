@@ -1,0 +1,63 @@
+.sf-tabbar-spacer {
+  height: 128rpx;
+}
+
+.sf-tabbar-wrap {
+  position: fixed;
+  z-index: 2000;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 14rpx 28rpx calc(6rpx + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+
+.sf-tabbar {
+  display: flex;
+  align-items: center;
+  height: 104rpx;
+  box-sizing: border-box;
+  padding: 10rpx;
+  border: 2rpx solid #e1e8df;
+  border-radius: 40rpx;
+  background: rgba(251, 252, 248, 0.98);
+  box-shadow: 0 -12rpx 34rpx rgba(24, 34, 29, 0.12);
+  pointer-events: auto;
+}
+
+.sf-tabbar-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  min-width: 0;
+  height: 82rpx;
+  border-radius: 32rpx;
+  color: #8b9791;
+}
+
+.sf-tabbar-item.active {
+  color: #1e6b52;
+  background: #fff2c7;
+}
+
+.sf-tabbar-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.sf-tabbar-icon {
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.sf-tabbar-text {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  font-weight: 800;
+}

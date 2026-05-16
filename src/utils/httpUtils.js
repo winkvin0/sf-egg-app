@@ -1,7 +1,29 @@
-import _ from 'lodash'
-
 export const isSuccess = (res) => {
-    return _.get(res, 'code', null) === '00000';
+    return get(res, 'code', null) === '00000';
+}
+
+export const getBusinessData = (response, fallback = null) => {
+    const body = get(response, 'data', null);
+    if (get(response, 'statusCode') !== 200 || !isSuccess(body)) {
+        return fallback;
+    }
+    return get(body, 'data', fallback);
+}
+
+export async function requestBusinessData(config, fallback = null) {
+    try {
+        const response = await request(config);
+        return getBusinessData(response, fallback);
+    } catch (error) {
+        return fallback;
+    }
+}
+
+function get(source, path, fallback = undefined) {
+    const value = String(path)
+        .split('.')
+        .reduce((current, key) => current == null ? undefined : current[key], source);
+    return value === undefined ? fallback : value;
 }
 
 export function parseCookie(cookieString) {
